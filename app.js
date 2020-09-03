@@ -3,11 +3,9 @@ const http = require("http");
 const socketIo = require("socket.io");
 
 const port = process.env.PORT || 4001;
-const index = require("./routes/index");
 const path = require("path");
 
 const app = express();
-app.use(index);
 
 const server = http.createServer(app);
 
