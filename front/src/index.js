@@ -11,10 +11,9 @@ import "./App.scss";
 
 import socketIOClient from "socket.io-client";
 const ENDPOINT = "http://localhost:4001";
-// const ENDPOINT = "https://6d707240a653.ngrok.io/";
 
 console.log("initiating socket connection ...");
-const socket = socketIOClient(ENDPOINT);
+const socket = socketIOClient("/");
 
 ReactDOM.render(
 	<React.StrictMode>
