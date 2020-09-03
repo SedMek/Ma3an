@@ -1,0 +1,21 @@
+{
+	"name": "socket_server",
+	"version": "1.0.0",
+	"description": "serves as socket server for a website I made to watch videos on the same time online",
+	"main": "app.js",
+	"dependencies": {
+		"express": "^4.17.1",
+		"socket.io": "^2.3.0"
+	},
+	"devDependencies": {},
+	"scripts": {
+		"start": "PROD= true node app.js",
+		"postinstall": "cd ./front && npm install"
+	},
+	"engines": {
+		"node": "12.x",
+		"npm": "6.x"
+	},
+	"author": "Sedmek",
+	"license": "ISC"
+}
