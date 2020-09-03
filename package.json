@@ -9,7 +9,7 @@
 	},
 	"devDependencies": {},
 	"scripts": {
-		"start": "PROD= true node app.js",
+		"start": "PROD=true node app.js",
 		"postinstall": "cd ./front && npm install"
 	},
 	"engines": {
