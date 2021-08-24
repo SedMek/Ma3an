@@ -8,6 +8,10 @@ const VideoChat = ({ socket }) => {
 	const partnerVideo = useRef();
 	const [calling, setCalling] = useState(false);
 	const [receivingCall, setReceivingCall] = useState(false);
+	const [userVideoEnabled, setUserVideoEnabled] = useState(true);
+	const [userAudioEnabled, setUserAudioEnabled] = useState(true);
+	const [partnerVideoEnabled, setPartnerVideoEnabled] = useState(true);
+	const [partnerAudioEnabled, setPartnerAudioEnabled] = useState(true);
 	const [callerSignal, setCallerSignal] = useState();
 	const [callAccepted, setCallAccepted] = useState();
 	const [stream, setStream] = useState();
@@ -79,6 +83,27 @@ const VideoChat = ({ socket }) => {
 		});
 	}, [socket]);
 
+	useEffect(() => {
+		if (userVideo.current) {
+			userVideo.current.srcObject.getAudioTracks()[0].enabled = userAudioEnabled;
+		}
+	}, [userAudioEnabled]);
+	useEffect(() => {
+		if (userVideo.current) {
+			userVideo.current.srcObject.getVideoTracks()[0].enabled = userVideoEnabled;
+		}
+	}, [userVideoEnabled]);
+	useEffect(() => {
+		if (partnerVideo.current) {
+			partnerVideo.current.srcObject.getAudioTracks()[0].enabled = partnerAudioEnabled;
+		}
+	}, [partnerAudioEnabled]);
+	useEffect(() => {
+		if (partnerVideo.current) {
+			partnerVideo.current.srcObject.getVideoTracks()[0].enabled = partnerVideoEnabled;
+		}
+	}, [partnerVideoEnabled]);
+
 	let UserVideo;
 	if (stream) {
 		UserVideo = <video width="100%" playsInline muted ref={userVideo} autoPlay />;
@@ -120,9 +145,37 @@ const VideoChat = ({ socket }) => {
 		<Row around="xs">
 			<Col key={1} xs lg={2}>
 				<Card interactive={true}>{UserVideo}</Card>
+				{userVideo.current && (
+					<Row around="xs">
+						<Button
+							icon={<Icon icon="phone" iconSize={20} />}
+							onClick={() => setUserAudioEnabled(!userAudioEnabled)}
+							intent={userAudioEnabled ? Intent.PRIMARY : Intent.DANGER}
+						/>
+						<Button
+							icon={<Icon icon="camera" iconSize={20} />}
+							onClick={() => setUserVideoEnabled(!userVideoEnabled)}
+							intent={userVideoEnabled ? Intent.PRIMARY : Intent.DANGER}
+						/>
+					</Row>
+				)}
 			</Col>
 			<Col key={2} xs lg={2}>
 				<Card interactive={true}>{PartnerVideo}</Card>
+				{partnerVideo.current && (
+					<Row around="xs">
+						<Button
+							icon={<Icon icon="phone" iconSize={20} />}
+							onClick={() => setPartnerAudioEnabled(!partnerAudioEnabled)}
+							intent={partnerAudioEnabled ? Intent.PRIMARY : Intent.DANGER}
+						/>
+						<Button
+							icon={<Icon icon="camera" iconSize={20} />}
+							onClick={() => setPartnerVideoEnabled(!partnerVideoEnabled)}
+							intent={partnerVideoEnabled ? Intent.PRIMARY : Intent.DANGER}
+						/>
+					</Row>
+				)}
 			</Col>
 		</Row>
 	);

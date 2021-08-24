@@ -54,7 +54,7 @@ function App({ socket }) {
 		<div className="App">
 			<Navbar fixedToTop={true}>
 				<NavbarGroup className="left-nav">
-					<NavbarHeading>SyncOffice</NavbarHeading>
+					<NavbarHeading>Ma3an</NavbarHeading>
 					<NavbarDivider />
 				</NavbarGroup>
 				<NavbarGroup className="center-nav">
