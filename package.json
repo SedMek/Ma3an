@@ -10,7 +10,8 @@
 	"devDependencies": {},
 	"scripts": {
 		"start": "PROD=true node app.js",
-		"postinstall": "cd ./front && rm -rf node_modules && npm install"
+		"postinstall": "cd ./front && rm -rf node_modules && npm install",
+		"dev": "PROD=false node app.js"
 	},
 	"engines": {
 		"node": "12.x",

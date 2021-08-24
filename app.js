@@ -47,7 +47,7 @@ io.on("connection", (socket) => {
 	});
 });
 
-if (process.env.PROD) {
+if (process.env.PROD === "true") {
 	app.use(express.static(path.join(__dirname, "./front/build")));
 	app.get("*", (req, res) => {
 		res.sendFile(path.join(__dirname, "./front/build/index.html"));
